@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 555776569920216575}
   - component: {fileID: 2878048834309926372}
   - component: {fileID: 4350151334130290246}
+  - component: {fileID: 2474891987815379318}
   m_Layer: 0
   m_Name: SnakePart
   m_TagString: Untagged
@@ -98,4 +99,20 @@ MonoBehaviour:
   headSprite: {fileID: -2413806693520163455, guid: 6d73c9c36507f16439bd9021d530bd45, type: 3}
   middleSprite: {fileID: 7482667652216324306, guid: e7ddd9098ded6b24f874d62d1ae47a9d, type: 3}
   tailSprite: {fileID: 3625043607559282579, guid: d29c7238931d63a408c705fe729edbbf, type: 3}
-  renderer: {fileID: 2878048834309926372}
+  _renderer: {fileID: 2878048834309926372}
+--- !u!58 &2474891987815379318
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666691145006511734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SnakePart : MonoBehaviour
@@ -8,7 +6,7 @@ public class SnakePart : MonoBehaviour
     [SerializeField] Sprite middleSprite;
     [SerializeField] Sprite tailSprite;
 
-    [SerializeField] SpriteRenderer renderer;
+    [SerializeField] SpriteRenderer _renderer;
 
     public Vector3 position
     {
@@ -18,16 +16,32 @@ public class SnakePart : MonoBehaviour
 
     public void SetHead()
     {
-        renderer.sprite = headSprite;
+        _renderer.sprite = headSprite;
     }
 
     public void SetMiddle()
     {
-        renderer.sprite = middleSprite;
+        _renderer.sprite = middleSprite;
     }
 
     public void SetTail()
     {
-        renderer.sprite = tailSprite;
+        _renderer.sprite = tailSprite;
+    }
+
+    public void SetDirection(Vector2 direction)
+    {
+        float angle = 0;
+
+        if (direction == Vector2.right)
+            angle = 90;
+        else if (direction == Vector2.down)
+            angle = 180;
+        else if (direction == Vector2.left)
+            angle = 270;
+
+        angle += 90f;
+        Vector3 newRotation = Vector3.forward * angle;
+        transform.rotation = Quaternion.Euler(newRotation);
     }
 }
