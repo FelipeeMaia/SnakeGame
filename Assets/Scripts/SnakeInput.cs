@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SnakeInput : MonoBehaviour
 {
-    private Vector2 newDirection = Vector2.left;
+    [SerializeField] private Vector2 newDirection = Vector2.left;
     private bool canChangeDirection;
 
     public Vector2 GetDirection()

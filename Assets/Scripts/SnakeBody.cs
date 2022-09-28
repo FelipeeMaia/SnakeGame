@@ -6,15 +6,20 @@ public class SnakeBody : MonoBehaviour
     [SerializeField] int initialSize;
     [SerializeField] GameObject snakePartPrefab;
     [SerializeField] LinkedList<SnakePart> body;
+    public SnakePart head;
 
     public void CreateBody()
     {
         int size = initialSize >= 2 ? initialSize : 2;
         body = new LinkedList<SnakePart>();
 
-        for (int i = 0; i < size; i++)
+        GameObject _GO = Instantiate(snakePartPrefab, transform);
+        head = _GO.GetComponent<SnakePart>();
+        body.AddFirst(head);
+
+        for (int i = 1; i < size; i++)
         {
-            GameObject _GO = Instantiate(snakePartPrefab, transform);
+            _GO = Instantiate(snakePartPrefab, transform);
             SnakePart newPart = _GO.GetComponent<SnakePart>();
 
             newPart.transform.localPosition = Vector3.right * i;
@@ -22,21 +27,36 @@ public class SnakeBody : MonoBehaviour
             body.AddLast(newPart);
         }
 
+        head = body.First.Value;
         SetSprites();
     }
 
     public void MoveBody(Vector3 direction)
     {
         SnakePart newHead = body.Last.Value;
+        body.RemoveLast();
 
-        Vector3 newPosition = body.First.Value.position;
+        SetNewHead(newHead, direction);
+    }
+
+    public void Eat(Vector3 direction)
+    {
+        GameObject _GO = Instantiate(snakePartPrefab, transform);
+        SnakePart newHead = _GO.GetComponent<SnakePart>();
+
+        SetNewHead(newHead, direction);
+    }
+
+    private void SetNewHead(SnakePart newHead, Vector3 direction)
+    {
+        Vector3 newPosition = head.position;
         newPosition += direction;
 
         newHead.position = newPosition;
         newHead.SetDirection(direction);
 
-        body.RemoveLast();
         body.AddFirst(newHead);
+        head = newHead;
 
         SetSprites();
     }
