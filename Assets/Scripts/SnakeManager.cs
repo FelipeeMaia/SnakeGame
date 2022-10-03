@@ -38,8 +38,7 @@ public class SnakeManager : MonoBehaviour
                     break;
 
                 case sensedObject.snake:
-                    snake.MoveBody(direction);
-                    //Death();
+                    Death();
                     break;
             }
         }
@@ -47,7 +46,7 @@ public class SnakeManager : MonoBehaviour
 
     private void Death()
     {
-        //isAlive = false;
+        isAlive = false;
     }
 
     void Start()

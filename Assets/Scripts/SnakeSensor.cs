@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class SnakeSensor : MonoBehaviour
 {
-    private Vector3 point;
+    [SerializeField] private float sensorRadius;
 
     public sensedObject LookAhead(Vector3 where)
     {
-        point = where;
-        var collider = Physics2D.OverlapCircle(where, 0.5f);
+        var collider = Physics2D.OverlapCircle(where, sensorRadius);
 
         if(collider != null)
         {
-            SnakePart snake = collider.GetComponent<SnakePart>();
-            if(snake)
+            string tag = collider.tag;
+
+            if(tag == "Snake")
             {
                 return sensedObject.snake;
             }
 
-            Food food = collider.GetComponent<Food>();
-            if (food)
+            if (tag == "Food")
             {
+                collider.GetComponent<Food>().GetEaten();
                 return sensedObject.food;
             }
         }
