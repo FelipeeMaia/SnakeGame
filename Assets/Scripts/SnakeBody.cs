@@ -52,6 +52,11 @@ public class SnakeBody : MonoBehaviour
         Vector3 newPosition = head.position;
         newPosition += direction;
 
+        if (newPosition.x < GameValues.minX) newPosition.x = GameValues.maxX;
+        if (newPosition.x > GameValues.maxX) newPosition.x = GameValues.minX;
+        if (newPosition.y < GameValues.minY) newPosition.y = GameValues.maxY;
+        if (newPosition.y > GameValues.maxY) newPosition.y = GameValues.minY;
+
         newHead.position = newPosition;
         newHead.SetDirection(direction);
 
