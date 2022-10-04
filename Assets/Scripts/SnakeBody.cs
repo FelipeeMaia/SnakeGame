@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class SnakeBody : MonoBehaviour
     [SerializeField] int initialSize;
     [SerializeField] GameObject snakePartPrefab;
     [SerializeField] LinkedList<SnakePart> body;
-    public SnakePart head;
+    [System.NonSerialized] public SnakePart head;
 
     public void CreateBody()
     {
@@ -72,4 +73,20 @@ public class SnakeBody : MonoBehaviour
         body.First.Next.Value.SetMiddle();
         body.Last.Value.SetTail();
     }
+
+    private IEnumerator _KillBody()
+    {
+        foreach(SnakePart part in body)
+        {
+            yield return new WaitForSeconds(0.05f);
+            part.KillPart();
+        }
+    }
+
+    public void KillBody()
+    {
+        StartCoroutine(_KillBody());
+    }
+
+
 }

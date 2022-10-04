@@ -47,6 +47,7 @@ public class SnakeManager : MonoBehaviour
     private void Death()
     {
         isAlive = false;
+        snake.KillBody();
     }
 
     void Start()

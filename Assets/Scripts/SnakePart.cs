@@ -31,17 +31,22 @@ public class SnakePart : MonoBehaviour
 
     public void SetDirection(Vector2 direction)
     {
-        float angle = 0;
+        float angle = 90;
 
         if (direction == Vector2.right)
-            angle = 90;
+            angle += 90;
         else if (direction == Vector2.down)
-            angle = 180;
+            angle += 180;
         else if (direction == Vector2.left)
-            angle = 270;
+            angle += 270;
 
-        angle += 90f;
+        //angle += 90f;
         Vector3 newRotation = Vector3.forward * angle;
         transform.rotation = Quaternion.Euler(newRotation);
+    }
+
+    public void KillPart()
+    {
+        _renderer.color = Color.red;
     }
 }
